@@ -67,25 +67,9 @@
             content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--accent-color);
         }
 
-        /* --- AQUÍ ESTÁ EL CAMBIO PARA QUE NO SE PEGUE --- */
-        .module-header { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; /* Alineado al centro para que se vea más pro */
-            margin-bottom: 12px;
-            gap: 10px; /* Espacio mínimo obligatorio entre título y precio */
-        }
-        
-        .module-title { font-size: 1.1rem; font-weight: 700; margin: 0; color: #fff; flex-shrink: 1; }
-        
-        .module-price { 
-            font-family: 'Inter', monospace; 
-            font-size: 1rem; 
-            font-weight: 700; 
-            color: var(--accent-color);
-            white-space: nowrap; /* Evita que el precio se parta en dos líneas */
-        }
-
+        .module-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+        .module-title { font-size: 1.2rem; font-weight: 700; margin: 0; color: #fff; }
+        .module-price { font-family: 'Inter', monospace; font-size: 1.1rem; font-weight: 700; color: var(--accent-color); }
         .module-desc { margin: 0; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; }
 
         .action-panel { margin-top: 40px; }
@@ -122,7 +106,7 @@
 
         <main class="tech-stack">
             <div class="tech-module" onclick="selectModule(this)" 
-                 data-msg="Hola Zenith Code. Requiero información para implementar un Menú Digital QR ($500 MXN)."
+                 data-msg="Hola Zenith Code. Me interesa el Plan Esencial de $500 MXN para mi Menú Digital QR. ¿Podrías darme información sobre este y los otros planes (Profesional y VIP) que manejas?"
                  data-name="QR INTERFACE">
                 <div class="module-header">
                     <h2 class="module-title">QR Interface Protocol</h2>
@@ -132,7 +116,7 @@
             </div>
 
             <div class="tech-module" onclick="selectModule(this)" 
-                 data-msg="Hola Zenith Code. Necesito una Optimización de Software para mi equipo ($300 MXN)."
+                 data-msg="Hola Zenith Code. Necesito información sobre la Optimización de Software ($300 MXN) y qué otros servicios o planes de mantenimiento ofrecen."
                  data-name="SOFTWARE SUPPORT">
                 <div class="module-header">
                     <h2 class="module-title">Software Support</h2>
@@ -142,7 +126,7 @@
             </div>
 
             <div class="tech-module" onclick="selectModule(this)" 
-                 data-msg="Hola Zenith Code. Me interesa el servicio de Digital Identity Core ($150 MXN)."
+                 data-msg="Hola Zenith Code. Me interesa el servicio de Digital Identity Core ($150 MXN). ¿Manejan paquetes empresariales o más planes de identidad?"
                  data-name="DIGITAL ID">
                 <div class="module-header">
                     <h2 class="module-title">Digital Identity Core</h2>
