@@ -4,24 +4,24 @@
     <meta charset="UTF-8">
     <meta name="google" content="notranslate">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ZENITH CODE | Neon Gold Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>ZENITH CODE | Global Initiative</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            /* Colores LED Neon */
-            --neon-gold: #FFD700;
-            --neon-glow: rgba(255, 215, 0, 0.6);
-            --neon-dim: rgba(255, 215, 0, 0.2);
-            --bg-deep: #050505;
-            --text-secondary: #A1A1A1;
+            --accent-color: #00FF29;
+            --bg-deep: #030303;
+            --bg-surface: #111111;
+            --text-primary: #FFFFFF;
+            --text-secondary: #8A8A8A;
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
             background-color: var(--bg-deep);
-            color: #fff;
+            background-image: radial-gradient(circle at 50% 0%, #1a1a1a, var(--bg-deep) 80%);
+            color: var(--text-primary);
             font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 40px 20px;
@@ -29,88 +29,70 @@
             display: flex; justify-content: center; align-items: center;
         }
 
-        .interface-container { width: 100%; max-width: 480px; }
+        .interface-container { width: 100%; max-width: 480px; position: relative; z-index: 1; }
 
-        /* Efecto LED en el Título */
-        header { margin-bottom: 50px; }
+        header { margin-bottom: 50px; text-align: left; }
         .company-identity {
-            font-size: 3.2rem; font-weight: 900; letter-spacing: -1.5px; margin: 0;
-            color: var(--neon-gold);
-            text-shadow: 
-                0 0 5px #fff,
-                0 0 10px var(--neon-gold),
-                0 0 20px var(--neon-gold),
-                0 0 40px var(--neon-gold);
+            font-size: 3rem; font-weight: 900; letter-spacing: -1.5px; line-height: 1; margin: 0 0 15px 0;
+            background: linear-gradient(90deg, #fff, #aaa); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
 
-        /* Beacon con pulso de luz */
-        .system-status { color: var(--neon-gold); font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; margin-top: 10px; }
+        .system-status {
+            display: inline-flex; align-items: center;
+            font-size: 0.75rem; color: var(--accent-color); font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+        }
         .status-beacon {
-            width: 8px; height: 8px; background: #fff; border-radius: 50%; margin-right: 10px;
-            box-shadow: 0 0 10px #fff, 0 0 20px var(--neon-gold);
-            animation: flicker 2s infinite alternate;
+            width: 10px; height: 10px; background: var(--accent-color); border-radius: 50%; margin-right: 10px;
+            box-shadow: 0 0 20px var(--accent-color); animation: beacon-pulse 3s infinite;
         }
+        @keyframes beacon-pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.3; transform: scale(0.8); } }
 
-        @keyframes flicker {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.6; }
-        }
+        .tech-stack { display: flex; flex-direction: column; gap: 15px; }
 
-        .tech-stack { display: flex; flex-direction: column; gap: 20px; }
-
-        /* Módulos con estilo de Tubo LED */
         .tech-module {
-            background: rgba(255, 215, 0, 0.02);
-            border: 2px solid var(--neon-dim);
-            padding: 25px; border-radius: 15px;
-            transition: all 0.4s ease;
-            cursor: pointer;
+            background: var(--bg-surface);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 28px; border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative; overflow: hidden; cursor: pointer;
         }
 
         .tech-module.selected {
-            border-color: var(--neon-gold);
-            background: rgba(255, 215, 0, 0.05);
-            /* Sombra LED exterior e interior */
-            box-shadow: 
-                0 0 15px var(--neon-glow),
-                inset 0 0 10px var(--neon-dim);
-            transform: translateY(-3px);
+            border-color: var(--accent-color);
+            background: #161616;
+            box-shadow: 0 0 30px rgba(0, 255, 41, 0.15);
         }
-
-        .module-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-        .module-title { font-size: 1.1rem; font-weight: 700; margin: 0; }
         
-        /* Precios Neón */
-        .module-price { 
-            color: var(--neon-gold); font-weight: 900; 
-            text-shadow: 0 0 10px var(--neon-glow);
+        .tech-module.selected::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--accent-color);
         }
 
-        .module-desc { color: var(--text-secondary); font-size: 0.85rem; line-height: 1.5; margin: 0; }
+        .module-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+        .module-title { font-size: 1.2rem; font-weight: 700; margin: 0; color: #fff; }
+        .module-price { font-family: 'Inter', monospace; font-size: 1.1rem; font-weight: 700; color: var(--accent-color); }
+        .module-desc { margin: 0; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; }
 
-        /* Botón de Acción LED */
         .action-panel { margin-top: 40px; }
         .btn-execute {
             display: flex; justify-content: center; align-items: center;
-            width: 100%; padding: 22px;
-            background: transparent;
-            border: 2px solid #333;
-            color: #333; text-decoration: none;
-            font-weight: 900; border-radius: 10px;
-            transition: 0.4s; pointer-events: none;
+            width: 100%; padding: 24px;
+            background: var(--text-secondary);
+            color: #000; text-decoration: none;
+            font-size: 1.1rem; font-weight: 900; letter-spacing: 1px;
+            border-radius: 8px; transition: 0.3s;
+            text-transform: uppercase; pointer-events: none; opacity: 0.5;
         }
 
         .btn-execute.active {
-            border-color: var(--neon-gold);
-            color: var(--neon-gold);
-            box-shadow: 0 0 20px var(--neon-glow);
-            pointer-events: all;
+            background: var(--accent-color);
+            box-shadow: 0 10px 30px -10px rgba(0, 255, 41, 0.5);
+            pointer-events: all; opacity: 1;
         }
 
         footer {
-            margin-top: 50px; padding-top: 20px; border-top: 1px solid #1a1a1a;
-            display: flex; justify-content: space-between;
-            font-size: 0.65rem; color: #444;
+            margin-top: 60px; border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px; display: flex; justify-content: space-between;
+            color: rgba(255,255,255,0.4); font-size: 0.7rem; font-weight: 500;
         }
     </style>
 </head>
@@ -119,12 +101,12 @@
     <div class="interface-container">
         <header>
             <h1 class="company-identity">ZENITH CODE</h1>
-            <div class="system-status"><span class="status-beacon"></span> MATRIX_GOLD ONLINE</div>
+            <div class="system-status"><span class="status-beacon"></span> Systems Active</div>
         </header>
 
         <main class="tech-stack">
             <div class="tech-module" onclick="selectModule(this)" 
-                 data-msg="Hola Zenith Code. Me interesa el Plan Esencial de $500 MXN."
+                 data-msg="Hola Zenith Code. Me interesa el Plan Esencial de $500 MXN para mi Menú Digital QR. ¿Podrías darme información sobre este y los otros planes (Profesional y VIP) que manejas?"
                  data-name="QR INTERFACE">
                 <div class="module-header">
                     <h2 class="module-title">QR Interface Protocol</h2>
@@ -134,45 +116,49 @@
             </div>
 
             <div class="tech-module" onclick="selectModule(this)" 
-                 data-msg="Hola Zenith Code. Necesito información sobre Software Support ($300 MXN)."
+                 data-msg="Hola Zenith Code. Necesito información sobre la Optimización de Software ($300 MXN) y qué otros servicios o planes de mantenimiento ofrecen."
                  data-name="SOFTWARE SUPPORT">
                 <div class="module-header">
                     <h2 class="module-title">Software Support</h2>
                     <span class="module-price">$300 MXN</span>
                 </div>
-                <p class="module-desc">Aceleración de arranque y limpieza de rendimiento del sistema.</p>
+                <p class="module-desc">Aceleración de arranque, limpieza de archivos basura y optimización de rendimiento del sistema.</p>
             </div>
 
             <div class="tech-module" onclick="selectModule(this)" 
-                 data-msg="Hola Zenith Code. Me interesa Digital Identity Core ($150 MXN)."
+                 data-msg="Hola Zenith Code. Me interesa el servicio de Digital Identity Core ($150 MXN). ¿Manejan paquetes empresariales o más planes de identidad?"
                  data-name="DIGITAL ID">
                 <div class="module-header">
                     <h2 class="module-title">Digital Identity Core</h2>
                     <span class="module-price">$150 MXN</span>
                 </div>
-                <p class="module-desc">Tarjetas digitales personalizadas y contacto profesional.</p>
+                <p class="module-desc">Tarjetas digitales personalizadas. Centralización de enlaces y contacto profesional.</p>
             </div>
         </main>
 
         <div class="action-panel">
-            <a href="#" id="actionBtn" class="btn-execute">SELECT MODULE</a>
+            <a href="#" id="actionBtn" class="btn-execute">SELECCIONE UN MÓDULO</a>
         </div>
 
         <footer>
-            <span>EST. 2026-2027</span>
+            <span>ZENITH CODE © 2026-2027</span>
             <span>LEÓN, GTO.</span>
         </footer>
     </div>
 
     <script>
         function selectModule(element) {
-            document.querySelectorAll('.tech-module').forEach(m => m.classList.remove('selected'));
+            const modules = document.querySelectorAll('.tech-module');
+            modules.forEach(m => m.classList.remove('selected'));
             element.classList.add('selected');
-            
+
+            const message = element.getAttribute('data-msg');
+            const serviceName = element.getAttribute('data-name');
             const btn = document.getElementById('actionBtn');
+            
             btn.classList.add('active');
-            btn.innerText = "ORDER: " + element.getAttribute('data-name');
-            btn.href = `https://wa.me/524791527895?text=${encodeURIComponent(element.getAttribute('data-msg'))}`;
+            btn.innerText = "ORDENAR: " + serviceName;
+            btn.href = `https://wa.me/524791527895?text=${encodeURIComponent(message)}`;
         }
     </script>
 </body>
