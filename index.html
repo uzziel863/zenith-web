@@ -2,14 +2,13 @@
 <html lang="es" translate="no">
 <head>
     <meta charset="UTF-8">
-    <meta name="google" content="notranslate">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ZENITH CODE | Global Initiative</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <title>ZENITH CODE | Menús Digitales</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --accent-color: #00FF29;
+            --accent-color: #00FF29; /* Tu verde original */
             --bg-deep: #030303;
             --bg-surface: #111111;
             --text-primary: #FFFFFF;
@@ -20,7 +19,7 @@
 
         body {
             background-color: var(--bg-deep);
-            background-image: radial-gradient(circle at 50% 0%, #1a1a1a, var(--bg-deep) 80%);
+            background-image: radial-gradient(circle at 50% 0%, #0a240c, var(--bg-deep) 85%);
             color: var(--text-primary);
             font-family: 'Inter', sans-serif;
             margin: 0;
@@ -29,12 +28,12 @@
             display: flex; justify-content: center; align-items: center;
         }
 
-        .interface-container { width: 100%; max-width: 480px; position: relative; z-index: 1; }
+        .interface-container { width: 100%; max-width: 480px; }
 
-        header { margin-bottom: 50px; text-align: left; }
+        header { margin-bottom: 50px; }
         .company-identity {
             font-size: 3rem; font-weight: 900; letter-spacing: -1.5px; line-height: 1; margin: 0 0 15px 0;
-            background: linear-gradient(90deg, #fff, #aaa); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background: linear-gradient(90deg, #fff, #888); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
 
         .system-status {
@@ -43,28 +42,23 @@
         }
         .status-beacon {
             width: 10px; height: 10px; background: var(--accent-color); border-radius: 50%; margin-right: 10px;
-            box-shadow: 0 0 20px var(--accent-color); animation: beacon-pulse 3s infinite;
+            box-shadow: 0 0 15px var(--accent-color); animation: beacon-pulse 2s infinite;
         }
-        @keyframes beacon-pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.3; transform: scale(0.8); } }
+        @keyframes beacon-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 
         .tech-stack { display: flex; flex-direction: column; gap: 15px; }
 
         .tech-module {
             background: var(--bg-surface);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             padding: 28px; border-radius: 12px;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            position: relative; overflow: hidden; cursor: pointer;
+            transition: 0.3s; cursor: pointer;
         }
 
         .tech-module.selected {
             border-color: var(--accent-color);
             background: #161616;
-            box-shadow: 0 0 30px rgba(0, 255, 41, 0.15);
-        }
-        
-        .tech-module.selected::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--accent-color);
+            box-shadow: 0 0 20px rgba(0, 255, 41, 0.1);
         }
 
         .module-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
@@ -76,23 +70,21 @@
         .btn-execute {
             display: flex; justify-content: center; align-items: center;
             width: 100%; padding: 24px;
-            background: var(--text-secondary);
-            color: #000; text-decoration: none;
-            font-size: 1.1rem; font-weight: 900; letter-spacing: 1px;
-            border-radius: 8px; transition: 0.3s;
-            text-transform: uppercase; pointer-events: none; opacity: 0.5;
+            background: #222; color: #555; text-decoration: none;
+            font-size: 1.1rem; font-weight: 900; border-radius: 8px;
+            text-transform: uppercase; pointer-events: none; transition: 0.4s;
         }
 
         .btn-execute.active {
-            background: var(--accent-color);
+            background: var(--accent-color); color: #000;
             box-shadow: 0 10px 30px -10px rgba(0, 255, 41, 0.5);
-            pointer-events: all; opacity: 1;
+            pointer-events: all;
         }
 
         footer {
-            margin-top: 60px; border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 60px; border-top: 1px solid rgba(255, 255, 255, 0.05);
             padding-top: 30px; display: flex; justify-content: space-between;
-            color: rgba(255,255,255,0.4); font-size: 0.7rem; font-weight: 500;
+            color: rgba(255,255,255,0.2); font-size: 0.7rem;
         }
     </style>
 </head>
@@ -101,64 +93,60 @@
     <div class="interface-container">
         <header>
             <h1 class="company-identity">ZENITH CODE</h1>
-            <div class="system-status"><span class="status-beacon"></span> Systems Active</div>
+            <div class="system-status"><span class="status-beacon"></span> MENÚS DIGITALES ACTIVOS</div>
         </header>
 
         <main class="tech-stack">
             <div class="tech-module" onclick="selectModule(this)" 
-                 data-msg="Hola Zenith Code. Me interesa el Plan Esencial de $500 MXN para mi Menú Digital QR. ¿Podrías darme información sobre este y los otros planes (Profesional y VIP) que manejas?"
-                 data-name="QR INTERFACE">
+                 data-msg="Hola Zenith Code. Me interesa el Plan Esencial de $500 para mi menú digital."
+                 data-name="PLAN ESENCIAL">
                 <div class="module-header">
-                    <h2 class="module-title">QR Interface Protocol</h2>
+                    <h2 class="module-title">QR Basic Interface</h2>
                     <span class="module-price">$500 MXN</span>
                 </div>
-                <p class="module-desc">Menús digitales de alta velocidad. Optimización de ventas para restaurantes.</p>
+                <p class="module-desc">Menú digital rápido y profesional. Ideal para taquerías, cafeterías y negocios locales.</p>
             </div>
 
             <div class="tech-module" onclick="selectModule(this)" 
-                 data-msg="Hola Zenith Code. Necesito información sobre la Optimización de Software ($300 MXN) y qué otros servicios o planes de mantenimiento ofrecen."
-                 data-name="SOFTWARE SUPPORT">
+                 data-msg="Hola Zenith Code. Me interesa el Plan Profesional de $950 para mi negocio."
+                 data-name="PLAN PROFESIONAL">
                 <div class="module-header">
-                    <h2 class="module-title">Software Support</h2>
-                    <span class="module-price">$300 MXN</span>
+                    <h2 class="module-title">QR Pro System</h2>
+                    <span class="module-price">$950 MXN</span>
                 </div>
-                <p class="module-desc">Aceleración de arranque, limpieza de archivos basura y optimización de rendimiento del sistema.</p>
+                <p class="module-desc">Incluye diseño de Código QR personalizado y actualizaciones mensuales de precios.</p>
             </div>
 
             <div class="tech-module" onclick="selectModule(this)" 
-                 data-msg="Hola Zenith Code. Me interesa el servicio de Digital Identity Core ($150 MXN). ¿Manejan paquetes empresariales o más planes de identidad?"
-                 data-name="DIGITAL ID">
+                 data-msg="Hola Zenith Code. Me interesa el Plan VIP de $1,850. ¿Me dan más información?"
+                 data-name="PLAN VIP">
                 <div class="module-header">
-                    <h2 class="module-title">Digital Identity Core</h2>
-                    <span class="module-price">$150 MXN</span>
+                    <h2 class="module-title">VIP Business Pack</h2>
+                    <span class="module-price">$1,850 MXN</span>
                 </div>
-                <p class="module-desc">Tarjetas digitales personalizadas. Centralización de enlaces y contacto profesional.</p>
+                <p class="module-desc">Sistema completo + Diseño de lona publicitaria para atraer clientes desde la calle.</p>
             </div>
         </main>
 
         <div class="action-panel">
-            <a href="#" id="actionBtn" class="btn-execute">SELECCIONE UN MÓDULO</a>
+            <a href="#" id="actionBtn" class="btn-execute">SELECCIONE UN PLAN</a>
         </div>
 
         <footer>
-            <span>ZENITH CODE © 2026-2027</span>
+            <span>ZENITH CODE © 2026</span>
             <span>LEÓN, GTO.</span>
         </footer>
     </div>
 
     <script>
         function selectModule(element) {
-            const modules = document.querySelectorAll('.tech-module');
-            modules.forEach(m => m.classList.remove('selected'));
+            document.querySelectorAll('.tech-module').forEach(m => m.classList.remove('selected'));
             element.classList.add('selected');
-
-            const message = element.getAttribute('data-msg');
-            const serviceName = element.getAttribute('data-name');
-            const btn = document.getElementById('actionBtn');
             
+            const btn = document.getElementById('actionBtn');
             btn.classList.add('active');
-            btn.innerText = "ORDENAR: " + serviceName;
-            btn.href = `https://wa.me/524791527895?text=${encodeURIComponent(message)}`;
+            btn.innerText = "ORDENAR: " + element.getAttribute('data-name');
+            btn.href = `https://wa.me/524791527895?text=${encodeURIComponent(element.getAttribute('data-msg'))}`;
         }
     </script>
 </body>
