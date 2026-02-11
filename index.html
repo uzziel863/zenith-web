@@ -5,149 +5,129 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>ZENITH CODE | Menús Digitales</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-    
     <style>
         :root {
             --accent-color: #00FF29; /* Tu verde original */
             --bg-deep: #030303;
-            --bg-surface: #111111;
+            --bg-surface: #0f0f0f;
             --text-primary: #FFFFFF;
-            --text-secondary: #8A8A8A;
+            --text-secondary: #a0a0a0;
         }
-
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
             background-color: var(--bg-deep);
-            background-image: radial-gradient(circle at 50% 0%, #0a240c, var(--bg-deep) 85%);
             color: var(--text-primary);
             font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 40px 20px;
-            min-height: 100vh;
-            display: flex; justify-content: center; align-items: center;
+            margin: 0; padding: 20px;
+            display: flex; justify-content: center;
         }
 
-        .interface-container { width: 100%; max-width: 480px; }
+        .container { width: 100%; max-width: 450px; }
 
-        header { margin-bottom: 50px; }
-        .company-identity {
-            font-size: 3rem; font-weight: 900; letter-spacing: -1.5px; line-height: 1; margin: 0 0 15px 0;
-            background: linear-gradient(90deg, #fff, #888); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
+        header { margin: 40px 0; border-left: 3px solid var(--accent-color); padding-left: 15px; }
+        .brand { font-size: 2.5rem; font-weight: 900; letter-spacing: -2px; margin: 0; }
+        .tagline { color: var(--accent-color); font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; }
 
-        .system-status {
-            display: inline-flex; align-items: center;
-            font-size: 0.75rem; color: var(--accent-color); font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-        }
-        .status-beacon {
-            width: 10px; height: 10px; background: var(--accent-color); border-radius: 50%; margin-right: 10px;
-            box-shadow: 0 0 15px var(--accent-color); animation: beacon-pulse 2s infinite;
-        }
-        @keyframes beacon-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-
-        .tech-stack { display: flex; flex-direction: column; gap: 15px; }
-
-        .tech-module {
+        /* Módulos de Planes */
+        .plan-card {
             background: var(--bg-surface);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 28px; border-radius: 12px;
-            transition: 0.3s; cursor: pointer;
+            border: 1px solid #1a1a1a;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 15px;
+            transition: 0.3s;
+            cursor: pointer;
         }
 
-        .tech-module.selected {
-            border-color: var(--accent-color);
-            background: #161616;
-            box-shadow: 0 0 20px rgba(0, 255, 41, 0.1);
-        }
+        .plan-card.selected { border-color: var(--accent-color); background: #121a12; }
 
-        .module-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
-        .module-title { font-size: 1.2rem; font-weight: 700; margin: 0; color: #fff; }
-        .module-price { font-family: 'Inter', monospace; font-size: 1.1rem; font-weight: 700; color: var(--accent-color); }
-        .module-desc { margin: 0; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; }
+        .plan-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .plan-name { font-weight: 700; font-size: 1.1rem; }
+        .plan-price { color: var(--accent-color); font-weight: 900; font-size: 1.2rem; }
+        .plan-info { color: var(--text-secondary); font-size: 0.85rem; line-height: 1.5; }
 
-        .action-panel { margin-top: 40px; }
-        .btn-execute {
-            display: flex; justify-content: center; align-items: center;
-            width: 100%; padding: 24px;
-            background: #222; color: #555; text-decoration: none;
-            font-size: 1.1rem; font-weight: 900; border-radius: 8px;
-            text-transform: uppercase; pointer-events: none; transition: 0.4s;
+        /* Sección de Reglas (Fundamental) */
+        .policy-box {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 25px 0;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
         }
+        .policy-title { color: #fff; font-weight: 700; display: block; margin-bottom: 5px; text-transform: uppercase; }
 
-        .btn-execute.active {
-            background: var(--accent-color); color: #000;
-            box-shadow: 0 10px 30px -10px rgba(0, 255, 41, 0.5);
-            pointer-events: all;
+        .order-btn {
+            display: block;
+            background: #222;
+            color: #555;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 900;
+            transition: 0.4s;
+            pointer-events: none;
         }
+        .order-btn.active { background: var(--accent-color); color: #000; pointer-events: all; box-shadow: 0 0 20px rgba(0,255,41,0.3); }
 
-        footer {
-            margin-top: 60px; border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding-top: 30px; display: flex; justify-content: space-between;
-            color: rgba(255,255,255,0.2); font-size: 0.7rem;
-        }
+        footer { text-align: center; font-size: 0.7rem; color: #444; margin-top: 40px; }
     </style>
 </head>
 <body>
 
-    <div class="interface-container">
-        <header>
-            <h1 class="company-identity">ZENITH CODE</h1>
-            <div class="system-status"><span class="status-beacon"></span> MENÚS DIGITALES ACTIVOS</div>
-        </header>
+<div class="container">
+    <header>
+        <h1 class="brand">ZENITH CODE</h1>
+        <span class="tagline">SISTEMAS QR PROFESIONALES</span>
+    </header>
 
-        <main class="tech-stack">
-            <div class="tech-module" onclick="selectModule(this)" 
-                 data-msg="Hola Zenith Code. Me interesa el Plan Esencial de $500 para mi menú digital."
-                 data-name="PLAN ESENCIAL">
-                <div class="module-header">
-                    <h2 class="module-title">QR Basic Interface</h2>
-                    <span class="module-price">$500 MXN</span>
-                </div>
-                <p class="module-desc">Menú digital rápido y profesional. Ideal para taquerías, cafeterías y negocios locales.</p>
-            </div>
-
-            <div class="tech-module" onclick="selectModule(this)" 
-                 data-msg="Hola Zenith Code. Me interesa el Plan Profesional de $950 para mi negocio."
-                 data-name="PLAN PROFESIONAL">
-                <div class="module-header">
-                    <h2 class="module-title">QR Pro System</h2>
-                    <span class="module-price">$950 MXN</span>
-                </div>
-                <p class="module-desc">Incluye diseño de Código QR personalizado y actualizaciones mensuales de precios.</p>
-            </div>
-
-            <div class="tech-module" onclick="selectModule(this)" 
-                 data-msg="Hola Zenith Code. Me interesa el Plan VIP de $1,850. ¿Me dan más información?"
-                 data-name="PLAN VIP">
-                <div class="module-header">
-                    <h2 class="module-title">VIP Business Pack</h2>
-                    <span class="module-price">$1,850 MXN</span>
-                </div>
-                <p class="module-desc">Sistema completo + Diseño de lona publicitaria para atraer clientes desde la calle.</p>
-            </div>
-        </main>
-
-        <div class="action-panel">
-            <a href="#" id="actionBtn" class="btn-execute">SELECCIONE UN PLAN</a>
+    <div class="plan-card" onclick="select(this, 'Esencial', 500)">
+        <div class="plan-header">
+            <span class="plan-name">BASIC QR</span>
+            <span class="plan-price">$500 MXN</span>
         </div>
-
-        <footer>
-            <span>ZENITH CODE © 2026</span>
-            <span>LEÓN, GTO.</span>
-        </footer>
+        <p class="plan-info">Menú digital optimizado. Ideal para negocios que buscan rapidez y presencia digital inmediata.</p>
     </div>
 
-    <script>
-        function selectModule(element) {
-            document.querySelectorAll('.tech-module').forEach(m => m.classList.remove('selected'));
-            element.classList.add('selected');
-            
-            const btn = document.getElementById('actionBtn');
-            btn.classList.add('active');
-            btn.innerText = "ORDENAR: " + element.getAttribute('data-name');
-            btn.href = `https://wa.me/524791527895?text=${encodeURIComponent(element.getAttribute('data-msg'))}`;
-        }
-    </script>
+    <div class="plan-card" onclick="select(this, 'Pro', 950)">
+        <div class="plan-header">
+            <span class="plan-name">PRO SYSTEM</span>
+            <span class="plan-price">$950 MXN</span>
+        </div>
+        <p class="plan-info">Incluye diseño de código QR único para imprimir y enlace directo a WhatsApp para pedidos.</p>
+    </div>
+
+    <div class="plan-card" onclick="select(this, 'VIP', 1850)">
+        <div class="plan-header">
+            <span class="plan-name">VIP BUSINESS</span>
+            <span class="plan-price">$1,850 MXN</span>
+        </div>
+        <p class="plan-info">Plan completo + diseño de lona publicitaria de alta visibilidad para tu local.</p>
+    </div>
+
+    <div class="policy-box">
+        <span class="policy-title">⚙️ Protocolo de Servicio:</span>
+        • Pago único por desarrollo.<br>
+        • No incluye cambios ilimitados.<br>
+        • Actualización de precios/menú: <b>$150 MXN</b> por evento.
+    </div>
+
+    <a href="#" id="mainAction" class="btn-execute order-btn">SELECCIONA UN SERVICIO</a>
+
+    <footer>LEÓN, GTO | 2026 | OPTIMIZADO PARA MÓVIL</footer>
+</div>
+
+<script>
+    function select(el, name, price) {
+        document.querySelectorAll('.plan-card').forEach(c => c.classList.remove('selected'));
+        el.classList.add('selected');
+        const btn = document.getElementById('mainAction');
+        btn.classList.add('active');
+        btn.innerText = `ORDENAR ${name.toUpperCase()} ($${price})`;
+        btn.href = `https://wa.me/524791527895?text=Hola Zenith Code, me interesa el plan ${name} de $${price}.`;
+    }
+</script>
+
 </body>
 </html>
